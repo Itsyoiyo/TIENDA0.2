@@ -1,0 +1,55 @@
+/* Comentario */
+
+
+.header{
+    background-color: #076A23;
+    height: 80px;
+    position: fixed;
+    width: 100%;
+    top: 0;
+    left: 0;
+    
+}
+
+.nav{ /* Mueve todo lo que esta dentro del nav a la izquiera*/
+    display: flex;/* Mueve el menu a la izquierda*/
+    justify-content: space-between; 
+    margin: 0 auto;
+}
+
+.nav-link{ /*clase que se crea para el disenho de del menu*/
+    color: white;
+    text-decoration: none;
+       
+}
+
+.logo{
+    font-size: 30px; 
+    font-weight: bold;
+    padding: 0 40px; /* lo mueve a la izquiera*/
+    line-height: 80px;/* centra*/
+    
+}
+.nav-menu{
+    display: flex;
+    margin-right: 40px;
+    list-style: none;
+    line-height: 90px;   
+}
+.nav-menu-item{
+    font-size:18px;
+    margin: 0 10px;
+}
+
+
+.nav-menu-link{
+
+    padding: 8px 12px;
+    border-radius: 10px;
+}
+.nav-menu-link:hover{ /*el hover permite que al seleccionar algo, cambie de color*/
+    background-color: green;
+    padding: 8px 12px;
+    border-radius: 10px;
+    transition: 0.5s;
+}
