@@ -73,7 +73,7 @@ public class PruebasController {
         return "/pruebas/listado2";
     }
     
-     @PostMapping("/query3")
+    @PostMapping("/query3")
     public String consultaQuery3(@RequestParam(value = "precioInf") double precioInf,
             @RequestParam(value = "precioSup") double precioSup, Model model) {
         var productos = productoService.metodoJPQL(precioInf, precioSup);
@@ -82,5 +82,48 @@ public class PruebasController {
         model.addAttribute("precioInf", precioInf);
         model.addAttribute("precioSup", precioSup);
         return "/pruebas/listado2";
+    }
+
+    @PostMapping("/buscarExistencias1")
+    public String buscarExistencias1(@RequestParam("existenciasMin") int existenciasMin,
+            @RequestParam("existenciasMax") int existenciasMax, Model model) {
+        var productos = productoService.findByExistenciasBetweenOrderByDescripcion(existenciasMin, existenciasMax);
+        model.addAttribute("productos", productos);
+        model.addAttribute("existenciasMin", existenciasMin);
+        model.addAttribute("existenciasMax", existenciasMax);
+        model.addAttribute("totalProductos", productos.size());
+        return "/pruebas/listado3";
+    }
+
+    @PostMapping("/buscarExistencias2")
+    public String buscarExistencias2(@RequestParam("existenciasMin") int existenciasMin,
+            @RequestParam("existenciasMax") int existenciasMax, Model model) {
+        var productos = productoService.buscarPorExistenciasJPQL(existenciasMin, existenciasMax);
+        model.addAttribute("productos", productos);
+        model.addAttribute("existenciasMin", existenciasMin);
+        model.addAttribute("existenciasMax", existenciasMax);
+        model.addAttribute("totalProductos", productos.size());
+        return "/pruebas/listado3";
+    }
+
+    @PostMapping("/buscarExistencias3")
+    public String buscarExistencias3(@RequestParam("existenciasMin") int existenciasMin,
+            @RequestParam("existenciasMax") int existenciasMax, Model model) {
+        var productos = productoService.buscarPorExistenciasNativo(existenciasMin, existenciasMax);
+        model.addAttribute("productos", productos);
+        model.addAttribute("existenciasMin", existenciasMin);
+        model.addAttribute("existenciasMax", existenciasMax);
+        model.addAttribute("totalProductos", productos.size());
+        return "/pruebas/listado3";
+    }
+
+    // POR ESTO:
+    @GetMapping("/listado3")
+    public String mostrarListadoExistencias(Model model) {
+        var productos = productoService.getProductos(false);
+        model.addAttribute("productos", productos);
+        
+        model.addAttribute("totalProductos", 0);
+        return "/pruebas/listado3";
     }
 }

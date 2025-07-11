@@ -54,10 +54,29 @@ public class ProductoServiceImpl implements ProductoService {
     public List<Producto> metodoJPQL(double precioInf, double precioSup) {
         return productoDao.metodoJPQL(precioInf, precioSup);
     }
-    
-     @Override
-    @Transactional(readOnly=true)    
+
+    @Override
+    @Transactional(readOnly = true)
     public List<Producto> metodoNativo(double precioInf, double precioSup) {
         return productoDao.metodoNativo(precioInf, precioSup);
     }
+
+    @Override
+    @Transactional(readOnly = true)
+    public List<Producto> findByExistenciasBetweenOrderByDescripcion(int existenciasMin, int existenciasMax) {
+        return productoDao.findByExistenciasBetweenOrderByDescripcion(existenciasMin, existenciasMax);
+    }
+
+    @Override
+    @Transactional(readOnly = true)
+    public List<Producto> buscarPorExistenciasJPQL(int existenciasMin, int existenciasMax) {
+        return productoDao.buscarPorExistenciasJPQL(existenciasMin, existenciasMax);
+    }
+
+    @Override
+    @Transactional(readOnly = true)
+    public List<Producto> buscarPorExistenciasNativo(int existenciasMin, int existenciasMax) {
+        return productoDao.buscarPorExistenciasNativo(existenciasMin, existenciasMax);
+    }
+
 }
